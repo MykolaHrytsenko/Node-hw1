@@ -12,15 +12,22 @@ async function listContacts() {
     }
 }
 
-console.log(listContacts())
+// console.log(listContacts())
 
-// function getContactById(contactId) {
-//     // ...твій код
-// }
 
-// function removeContact(contactId) {
-//     // ...твій код
-// }
+async function getContactById(contactId) {
+    try {
+        const data = await fs.readFile(contactsPath);
+        const normalizedData = JSON.parse(data);
+        const result = normalizedData.find((contact) => contact.id.toString() === contactId.toString());
+        console.log(result);
+    }
+    catch (error) {
+        console.log(error);
+    }
+}
+
+console.log(getContactById(1))
 
 // function addContact(name, email, phone) {
 //     // ...твій код
