@@ -2,26 +2,17 @@ const fs = require("fs/promises");
 const path = require("node:path");
 
 const contactsPath = path.join(__dirname, "db", "contacts.json");
-console.log(contactsPath);
 
-
-fs.readFile(contactsPath, "utf-8", (error, content) => {
-    if (error) {
-        console.error(error)
-        return;
+async function listContacts() {
+    try {
+        const data = await fs.readFile(contactsPath);
+        console.table(JSON.parse(data));
+    } catch (error) {
+        console.log(error);
     }
-    const data = JSON.parse(content)
-    console.log("Content:", data.content)
-})
+}
 
-
-// fs.readFile('./db/contacts.json', "utf-8", (error, data) => {
-//     if (error) {
-//         console.error(error)
-//         return;
-//     }
-//     console.log(data)
-// })
+console.log(listContacts())
 
 // function getContactById(contactId) {
 //     // ...твій код
