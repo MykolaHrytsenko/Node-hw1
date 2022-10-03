@@ -8,32 +8,23 @@ const listContacts = async () => {
     return JSON.parse(result);
 
 }
-// async function listContacts() {
-//     try {
-//         const data = await fs.readFile(contactsPath);
-//         console.table(JSON.parse(data));
-//     } catch (error) {
-//         console.log(error);
-//     }
+
+const getContactById = async (contactId) => {
+    const contacts = await listContacts();
+    const result = contacts.find(item => item.id === contactId);
+    return result;
+}
+
+// function removeContact(contactId) {
+//     // ...твій код
 // }
 
-// console.log(listContacts())
-
-
-// async function getContactById(contactId) {
-//     try {
-//         const data = await fs.readFile(contactsPath);
-//         const normalizedData = JSON.parse(data);
-//         const result = normalizedData.find(
-//             (contact) => contact.id.toString() === contactId.toString()
-//         );
-//         console.log(result);
-//     } catch (error) {
-//         console.log(error);
-//     }
+// function addContact(name, email, phone) {
+//     // ...твій код
 // }
 
 
 module.exports = {
     listContacts,
+    getContactById,
 }

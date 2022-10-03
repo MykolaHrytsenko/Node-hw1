@@ -9,9 +9,10 @@ async function invokeAction({ action, id, name, email, phone }) {
             console.log(allContacts);
             break;
 
-        // case "get":
-        //     // ... id
-        //     break;
+        case "get":
+            const oneContact = await contacts.getContactById(id);
+            console.log(oneContact);
+            break;
 
         // case "add":
         //     // ... name email phone
@@ -26,6 +27,6 @@ async function invokeAction({ action, id, name, email, phone }) {
     }
 }
 
-invokeAction({ action: "list" });
-
+// invokeAction({ action: "list" });
+invokeAction({ action: "get", id: "1" });
 
