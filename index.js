@@ -14,9 +14,10 @@ async function invokeAction({ action, id, name, email, phone }) {
             console.log(oneContact);
             break;
 
-        // case "add":
-        //     // ... name email phone
-        //     break;
+        case "add":
+            const addContact = await contacts.addContact({ name, email, phone });
+            console.log(addContact);
+            break;
 
         // case "remove":
         //     // ... id
@@ -28,5 +29,6 @@ async function invokeAction({ action, id, name, email, phone }) {
 }
 
 // invokeAction({ action: "list" });
-invokeAction({ action: "get", id: "1" });
+// invokeAction({ action: "get", id: "1" });
+invokeAction({ action: "add", name: "Mykola", email: "niksandler@gmail.com", phone: "(073) 123-4678" })
 
