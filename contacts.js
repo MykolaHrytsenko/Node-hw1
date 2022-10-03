@@ -1,9 +1,11 @@
 const fs = require("fs/promises");
-// const path = require("node:path");
+const path = require("path");
 
-// const contactsPath = path.join(__dirname, "db", "contacts.json");
+const contactsPath = path.join(__dirname, "db", "contacts.json");
 
 const listContacts = async () => {
+    const result = await fs.readFile(contactsPath, "utf-8");
+    return JSON.parse(result);
 
 }
 // async function listContacts() {
@@ -33,5 +35,5 @@ const listContacts = async () => {
 
 
 module.exports = {
-    getAll,
+    listContacts,
 }
