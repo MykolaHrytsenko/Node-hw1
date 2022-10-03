@@ -1,12 +1,13 @@
+const { program } = require("commander");
+
 const contacts = require("./contacts")
 
-// const argv = require("yargs").argv;
 
 async function invokeAction({ action, id, name, email, phone }) {
     switch (action) {
         case "list":
             const allContacts = await contacts.listContacts();
-            console.log(allContacts);
+            console.table(allContacts);
             break;
 
         case "get":
@@ -27,9 +28,16 @@ async function invokeAction({ action, id, name, email, phone }) {
         default:
             console.warn("\x1B[31m Unknown action type!");
     }
-}
+};
 
-// invokeAction({ action: "list" });
-// invokeAction({ action: "get", id: "1" });
-// invokeAction({ action: "add", name: "Fill", email: "niksandler@gmail.com", phone: "(073) 123-4678" })
-invokeAction({ action: "remove", id: "VaBFMG0Z27hmQKRuanL0S" })
+program
+    .option("-a, --action <type>", "choose action")
+    .option("-i, --id <type>", "user id")
+    .option("-n, --name <type>", "user name")
+    .option("-e, --email <type>", "user email")
+    .option("-p, --phone <type>", "user phone");
+
+program.parse();
+
+const options = program.opts();
+invokeAction(options);
